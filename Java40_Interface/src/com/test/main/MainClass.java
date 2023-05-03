@@ -5,6 +5,7 @@ public class MainClass {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		/* Interface */
+		//컴파일 타임에 만들어짐
 		// 추상 메서드만 가지고 있는 요소
 		// 자바에서 클래스는 하나의 클래스만 상속 받을 수 있다.
 		// but 하나의 클래스는 다수의 Interface를 구현할 수 있다.
@@ -20,6 +21,7 @@ public class MainClass {
 		TestInterface1 t10 = new TestClass1();
 		t10.testMethod1();
 
+		//TestInterface2에 담았으니까 TestInterface2의 함수만 실행 가능
 		TestInterface2 t20 = new TestClass1();
 		t20.testMethod2();
 
@@ -27,11 +29,11 @@ public class MainClass {
 		// 여기 있는 모든 메서드에 매개변수로 들어갈 수 있음
 		// 1,2,3이 클래스였다면 클래스1'2'3' 3개 만들고 객체 각각 만들어야함
 		// ex) printf("",객체) -> 여기 객체 아무거나 다 들어올수 잇음!
-		Test100 t100 = new Test100();
-		Test200 t200 = new Test200();
-		t100.testMethod1(t200);
-		t100.testMethod2(t200);
-		t100.testMethod3(t200);
+		Class100 c100 = new Class100();
+		Test200 t200 = new Test200(); //Inter1,2,3모두 구현한 클래스
+		c100.testMethod1(t200); //Inter1이 들어갈 자리
+		c100.testMethod2(t200); //Inter2가 들어갈 자리
+		c100.testMethod3(t200); //Inter3이 들어갈 자리
 
 		// 인터페이스에 static 메서드 정의할 수 있다! -> 인터페이스도 컴파일 타임에 만들어지니까!
 		TestInterface1.testMethod100();
@@ -43,6 +45,8 @@ public class MainClass {
         // Inter500을 구현한 클래스의 객체를 생성한다.
         Test500 t500 = new Test500();
         // Inter500에 있는 default 메서드 호출
+        //Test500에서 default override하지 않았음!
+        //하지만 이 Test500의 객체는 interface에 있는 default method 그대로 갖다 쓸 수 있음 
         t500.defaultMethod();
 	}
 
@@ -99,7 +103,7 @@ interface Inter3 {
 }
 
 //1,2,3을 모두 구현한 클래스 하나를 만들면 여기 있는 모든 메서드에 매개변수로 들어갈 수 있음
-class Test100 {
+class Class100 {
 	public void testMethod1(Inter1 inter1) {
 		inter1.inter1Method();
 	}
@@ -185,5 +189,6 @@ interface Inter500{
 
 //Inter500을 구현한 클래스
 class Test500 implements Inter500{
+	//default override하지 않았음! 하지만 이 클래스의 객체는 interface에 있는 default method 그대로 갖다 쓸 수 있음 
 	
 }
