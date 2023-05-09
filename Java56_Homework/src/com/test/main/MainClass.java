@@ -19,9 +19,14 @@ public class MainClass {
 		System.out.println("학생 관리 프로그램을 가동합니다.");
 		int command = 0;
 		do {
-			command = sm.inputCommand();
-			if (command != 5) {
-				sm.runProgram(command);
+			try {
+				command = sm.inputCommand();
+				if (command != 5) {
+					sm.runProgram(command);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("잘못된 입력입니다.");
 			}
 
 		} while (command != 5);
