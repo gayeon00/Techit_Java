@@ -14,7 +14,7 @@ public class MainClass {
 		// InputStream과 OutputStream을 상속받고 있다.
 		// 필터스트림
 		// 기본 스트림들의 보조 역할을 하며 주 목적이 데이터를 가공하는 것이다.
-		// saveData1();
+//		 saveData1();
         //saveData2();
 		readData();
 	}
@@ -28,7 +28,7 @@ public class MainClass {
 			FileOutputStream fos = new FileOutputStream("test.txt");
 
 			// 쓰기할 데이터를 준비한다.
-			String value1 = "안녕하세요";
+			String value1 = "안녕하세요\n반갑습니당";
 
 			// 데이터를 바이트 형태로 가공한다.
 			byte[] data1 = value1.getBytes();
@@ -77,7 +77,7 @@ public class MainClass {
     public static void readData() {
         try {
             //FileInputStream 생성
-        	FileInputStream fis = new FileInputStream("text2.txt");
+        	FileInputStream fis = new FileInputStream("test.txt");
         	int byteSize =fis.available();
 //        	System.out.println(byteSize);
         	

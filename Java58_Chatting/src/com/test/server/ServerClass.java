@@ -34,7 +34,7 @@ class ChattingServer {
 
 	private ServerSocket server;
 	final int SERVER_PORT = 40000;
-	private ArrayList<UserClass> userList;
+	private ArrayList<User> userList;
 
 	public ChattingServer() {
 		try {
@@ -43,7 +43,7 @@ class ChattingServer {
 			// 사용자 접속 처리 쓰레드 가동
 			AccessUserClass accessUserClass = new AccessUserClass();
 			accessUserClass.start();
-			userList = new ArrayList<UserClass>();
+			userList = new ArrayList<User>();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -55,7 +55,7 @@ class ChattingServer {
 			String sendMsg = userNickName + " : " + msg;
 
 			// Arraylist의 객체만큼 반복
-			for (UserClass user : userList) {
+			for (User user : userList) {
 				// 현재 번째의 사용자의 닉넴 가져옴
 				String targetUserNickName = user.getUserNickName();
 
@@ -82,11 +82,11 @@ class ChattingServer {
 //					System.out.println(socket);
 
 					// 사용자가 접속하면 사용자 정보 객체를 생성하고 스레드를 가동
-					UserClass userClass = new UserClass(socket);
-					userClass.start();
+					User user = new User(socket);
+					user.start();
 
 					// 사용자 객체를 arraylist에 담는다.
-					userList.add(userClass);
+					userList.add(user);
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -95,7 +95,7 @@ class ChattingServer {
 	}
 
 	// 사용자 관련 클래스
-	class UserClass extends Thread {
+	class User extends Thread {
 		private String userNickName;
 
 		public String getUserNickName() {
@@ -108,7 +108,7 @@ class ChattingServer {
 		private DataInputStream dis;
 		private DataOutputStream dos;
 
-		public UserClass(Socket socket) {
+		public User(Socket socket) {
 			try {
 				this.socket = socket;
 				is = socket.getInputStream();

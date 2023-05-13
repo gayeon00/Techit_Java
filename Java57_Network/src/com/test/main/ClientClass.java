@@ -35,6 +35,7 @@ public class ClientClass {
 			
 			//서버로 데이터를 보낸다.
 			OutputStream os = socket.getOutputStream();
+			//필터스트림을 통해 OutputStream에 데이터 쓰기
 			DataOutputStream dos = new DataOutputStream(os);
 			
 			dos.writeInt(200);
